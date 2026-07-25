@@ -12,8 +12,7 @@ Next.js (App Router) + TypeScript, Tailwind + shadcn/ui, Supabase (Postgres + Au
 - Testing: Vitest, tests junto al archivo que testean (`archivo.ts` → `archivo.test.ts` al lado).
 
 ## Bitácora de sesión
-Al cerrar cada sesión de trabajo, usar el skill project-log
-(C:\Users\gvloc\claude-skills\project-log\SKILL.md) para generar o
+Al cerrar cada sesión de trabajo, usar el skill `project-log` para generar o
 actualizar PROJECT_LOG.md con el estado del proyecto.
 
 ## Diseño

@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm test -- --run
-      - run: pnpm build
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      # --passWithNoTests: el template arranca sin tests; sin esto la primera
+      # PR de cada proyecto nuevo daría CI rojo. Quitar cuando el proyecto
+      # tenga su primera suite real.
+      - run: npm test -- --run --passWithNoTests
+      - run: npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
