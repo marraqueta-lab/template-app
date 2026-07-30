@@ -20,7 +20,11 @@ jobs:
       # PR de cada proyecto nuevo daría CI rojo. Quitar cuando el proyecto
       # tenga su primera suite real.
       - run: npm test -- --run --passWithNoTests
+      # Valores de relleno si el repo no define los secretos. El build no
+      # se conecta a Supabase —las páginas autenticadas son dinámicas— pero
+      # el cliente sí exige que las variables existan, y sin ellas el build
+      # falla al intentar prerenderizar cualquier página que monte un módulo.
       - run: npm run build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key' }}
