@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Tailwind no escanea node_modules por defecto. Sin esta línea, las clases
+   de los paneles de ui-modules no generan CSS y se renderizan sin estilos
+   —el build igual pasa, así que el error solo se ve en pantalla. */
+@source "../node_modules/@marraqueta/ui-modules";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

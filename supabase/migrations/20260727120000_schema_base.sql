@@ -63,3 +63,14 @@ create policy "mi empresa" on empresas for select to authenticated
   using (
     id in (select empresa_id from perfiles where id = auth.uid())
   );
+
+-- Permisos de tabla ----------------------------------------------------
+-- La RLS filtra QUÉ filas se ven, pero primero el rol necesita permiso
+-- sobre la tabla: sin esto la consulta muere con "permission denied" antes
+-- de evaluar ninguna policy. No se hereda: las default privileges del rol
+-- `postgres` en `public` solo otorgan TRUNCATE/REFERENCES/TRIGGER.
+--
+-- Solo SELECT, y solo a `authenticated`: no hay policy de INSERT ni UPDATE
+-- en estas dos tablas a propósito. Crear empresas y asignar usuarios se
+-- hace con supabase/provisionar.sql, no desde la app.
+grant select on table empresas, perfiles to authenticated;
