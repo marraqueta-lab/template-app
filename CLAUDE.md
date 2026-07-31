@@ -33,7 +33,7 @@ Si existe, se monta — no se reescribe.
 ### Montar un módulo
 
 1. **Instalar la biblioteca** fijando el tag, nunca `main`:
-   `"@marraqueta/ui-modules": "github:marraqueta-lab/ui-modules#v0.2.0"`
+   `"@marraqueta/ui-modules": "github:marraqueta-lab/ui-modules#v0.3.1"`
 
 2. **Resolver dependencias.** Varios módulos requieren otros por foreign
    key, y el `schema.sql` falla si el requisito no está. El README de

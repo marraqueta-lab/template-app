@@ -27,6 +27,12 @@ on conflict do nothing;
 -- por invitación). El trigger `handle_new_user` les arma el perfil con
 -- rol 'operador' y sin empresa; esto los asigna y les fija el rol real.
 --
+-- NO crearlos con INSERT directo en auth.users: esa tabla tiene columnas
+-- de token que deben quedar en cadena vacía, no en NULL, y además hace
+-- falta su fila en auth.identities. Si falta cualquiera de las dos cosas,
+-- el login falla con "Database error querying schema" y el error no dice
+-- nada sobre la causa real. Comprobado.
+--
 -- Roles: admin | gestor | operador | solo_lectura
 -- (ver core/auth/roles.ts para qué puede hacer cada uno)
 

@@ -10,7 +10,11 @@ común (`core/`): auth, sesión, multi-empresa con RLS y protección de rutas.
 1. Repo nuevo desde **"Use this template"** en GitHub — nunca clonar
    `template-app` directo. **Privado**: los repos de cliente no van públicos.
 2. Cambiar `"name"` en `package.json` (no dejar el nombre del template — ya
-   te pasó una vez).
+   te pasó una vez) **y `project_id` en `supabase/config.toml`**. Ese
+   segundo es fácil de pasar por alto: si queda en `template-app`, los
+   contenedores locales de esta app colisionan con los de cualquier otra
+   —`supabase start` acá levanta contenedores con el nombre del otro
+   proyecto— y terminas aplicando esquemas en la base equivocada.
 
 ### 2. Supabase
 
