@@ -3,15 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import type { ItemNavegacion } from "@core/navegacion";
+import { NAVEGACION, type ItemNavegacion } from "@core/navegacion";
 
 /**
  * Navegación lateral. Agrupa por categoría y marca la ruta activa.
  * Usa los tokens del tema (sidebar-*), así que se re-tematiza sola cuando
  * un proyecto ajusta su paleta en globals.css.
+ *
+ * Importa NAVEGACION directamente en vez de recibirla por props: los
+ * íconos de Lucide son componentes, y un Server Component no puede
+ * pasarle funciones a uno de cliente ("Only plain objects can be passed").
+ * Importando acá, las referencias nunca cruzan la frontera.
  */
-export function SidebarNav({ items }: { items: ItemNavegacion[] }) {
+export function SidebarNav() {
   const pathname = usePathname();
+  const items = NAVEGACION;
 
   const sueltos = items.filter((i) => !i.categoria);
   const categorias = items.reduce<Record<string, ItemNavegacion[]>>((acc, item) => {

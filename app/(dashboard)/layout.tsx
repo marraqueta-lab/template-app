@@ -3,7 +3,6 @@ import { SidebarNav } from "@core/ui/sidebar-nav";
 import { MenuUsuario } from "@core/ui/menu-usuario";
 import { getPerfil } from "@core/auth/session";
 import { cerrarSesion } from "@core/auth/cerrar-sesion";
-import { NAVEGACION } from "@core/navegacion";
 
 export default async function DashboardLayout({
   children,
@@ -35,7 +34,7 @@ export default async function DashboardLayout({
         >
           <span className="font-semibold">{nombreApp}</span>
         </Link>
-        <SidebarNav items={NAVEGACION} />
+        <SidebarNav />
       </aside>
 
       <div className="flex flex-1 flex-col">
